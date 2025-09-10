@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>ETF Talks</title>
   <style>
-    /* Same CSS as above */
     :root {
       --teal-bg: #2FA28D;
       --teal-accent: #62D7A6;
@@ -17,7 +15,7 @@
       --dark-text: #e4eaf0;
     }
     body, main, nav, footer, h1, h2, p, ul {
-      transition: background-color 0.4s ease, color 0.4s ease;
+      transition: background-color 0.4s, color 0.4s;
     }
     body {
       margin: 0;
@@ -25,30 +23,61 @@
       background: var(--light-bg);
       color: var(--text-color);
     }
-    .navbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 0.75rem 1rem;
+    nav.navbar {
+      position: relative;
       background: var(--teal-bg);
-      font-size: 1.1rem;
-      justify-content: center;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
-    .navbar a {
+    .menu-button {
+      font-size: 2rem;
+      background: none;
+      border: none;
       color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      text-decoration: none;
-      white-space: nowrap;
+      cursor: pointer;
+      outline: none;
     }
-    .navbar a.active,
-    .navbar a:hover {
+    .menu-dropdown {
+      position: absolute;
+      top: 3.5rem;
+      right: 1rem;
+      background: var(--teal-bg);
+      border-radius: 7px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      display: flex;
+      flex-direction: column;
+      width: 210px;
+      z-index: 100;
+      animation: fadeInMenu 0.25s;
+    }
+    .menu-dropdown.hidden {
+      display: none;
+    }
+    .menu-dropdown a {
+      color: white;
+      padding: 1rem 1rem;
+      text-decoration: none;
+      border-bottom: 1px solid var(--teal-accent);
+      font-size: 1.06rem;
+      transition: background 0.22s, color 0.22s;
+    }
+    .menu-dropdown a:last-child {
+      border-bottom: none;
+    }
+    .menu-dropdown a.active,
+    .menu-dropdown a:hover {
       background: var(--teal-accent);
       color: #112b28;
     }
+    @keyframes fadeInMenu {
+      from {opacity: 0; transform: translateY(-12px);}
+      to   {opacity: 1; transform: translateY(0);}
+    }
     main {
       max-width: 900px;
-      margin: 2rem auto;
+      margin: 2rem auto 5rem auto;
       padding: 2rem;
       background: white;
       border-radius: 10px;
@@ -60,3 +89,122 @@
       object-fit: cover;
       border-radius: 10px;
       margin-bottom: 1.5rem;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--teal-bg);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+    .toggle {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .toggle input {
+      display: none;
+    }
+    body.dark-mode {
+      background: var(--dark-bg);
+      color: var(--dark-text);
+    }
+    body.dark-mode main {
+      background: #1a2925;
+      color: var(--dark-text);
+    }
+    body.dark-mode nav.navbar,
+    body.dark-mode .menu-dropdown {
+      background: #1a2925;
+    }
+    body.dark-mode .menu-dropdown a,
+    body.dark-mode .menu-dropdown a.active,
+    body.dark-mode .menu-dropdown a:hover {
+      color: var(--teal-accent);
+      background: #1a2925;
+    }
+    body.dark-mode .menu-dropdown a:hover {
+      background: var(--teal-accent);
+      color: #112b28;
+    }
+    body.dark-mode footer {
+      background: #1a2925;
+      color: var(--teal-accent);
+    }
+    @media (max-width: 768px) {
+      main {
+        margin: 1rem 0.2rem 5rem 0.2rem;
+        padding: 1rem;
+      }
+      .menu-dropdown {
+        right: 0.5rem;
+        width: 96vw;
+        min-width: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <button id="menuToggle" aria-label="Toggle menu" class="menu-button">&#x22EE;</button>
+    <div id="menuDropdown" class="menu-dropdown hidden">
+      <a href="index.html">About ETF</a>
+      <a href="innovation.html">Innovation Corner</a>
+      <a href="resources.html">Resources</a>
+      <a href="achievements.html">Achievements of ETF</a>
+      <a href="membership.html">Membership</a>
+      <a href="conferences.html">Conferences & Training</a>
+      <a href="journal.html">Journal</a>
+      <a href="talks.html" class="active">ETF Talks</a>
+    </div>
+  </nav>
+  <main>
+    <img class="page-hero-image" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80" alt="ETF Talks" />
+    <h1>ETF Talks</h1>
+    <p>Watch presentations, discussions, and interviews held by ETF thought leaders and experts.</p>
+    <h2>Featured Talks</h2>
+    <ul>
+      <li>Panel on Future Technologies 2025</li>
+      <li>Interview with AI Innovators</li>
+      <li>Roundtable on Sustainable Development</li>
+    </ul>
+  </main>
+  <footer>
+    <label class="toggle">
+      <input type="checkbox" id="modeToggle" />
+      <span>☀️</span><span>🌙</span><span>Theme</span>
+    </label>
+  </footer>
+  <script>
+    // Three-dots menu toggle
+    const menuButton = document.getElementById('menuToggle');
+    const menuDropdown = document.getElementById('menuDropdown');
+    menuButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      menuDropdown.classList.toggle('hidden');
+    });
+    document.addEventListener('click', (e) => {
+      if (!menuDropdown.contains(e.target) && e.target !== menuButton) {
+        menuDropdown.classList.add('hidden');
+      }
+    });
+
+    // Theme toggle logic
+    const toggle = document.getElementById("modeToggle");
+    toggle.checked = localStorage.getItem("theme") === "dark";
+    document.body.classList.toggle("dark-mode", toggle.checked);
+    toggle.addEventListener("change", () => {
+      document.body.classList.toggle("dark-mode", toggle.checked);
+      localStorage.setItem("theme", toggle.checked ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>
