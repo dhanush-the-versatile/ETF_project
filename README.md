@@ -4,7 +4,7 @@ A professional, responsive website for the English Teachers Forum - Bharath (ETF
 
 ## 🚀 Live Demo
 
-[View Live Website](https://your-github-username.github.io/english-teacher-forum)
+[View Live Website](https://dhanush-the-versatile.github.io/ETF_project)
 
 ## 📋 Table of Contents
 
@@ -110,7 +110,7 @@ English Teacher Forum (Homepage)
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/english-teacher-forum.git
+   git clone https://github.com/dhanush-the-versatile/ETF_project.git
    cd english-teacher-forum
    ```
 
